@@ -3,21 +3,19 @@ package com.perfectial.test.model;
 
 import org.springframework.stereotype.Component;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
-@Component
 @Table(name = "payments")
-public class Payment {
+public class Payment implements Serializable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "payment_id")
-    private String id;
+    private long id;
 
     @Column(name = "amount")
     private BigDecimal amount;
@@ -35,11 +33,11 @@ public class Payment {
         this.timeStamp = timeStamp;
     }
 
-    public String getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(long id) {
         this.id = id;
     }
 
